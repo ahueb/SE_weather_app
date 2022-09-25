@@ -1,0 +1,75 @@
+/* 
+
+CSS for the main website.... going to be responsive somewhere down the lines
+
+*/
+
+body,
+html {
+  height: 100%;
+  margin: 0px;
+  border: none;
+}
+
+.bg {
+  /* The image used */
+  background-image: linear-gradient(rgba(0, 8, 51, 0.9), rgba(0, 8, 51, 0.9)),
+    url("img/background/blue sky.jpg");
+
+  /* Full height */
+  height: 100vh;
+
+  /* Full width */
+  width: 100%;
+
+  /* */
+  padding-top: 5%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.search {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 50px;
+  display: flex;
+  background: rgb(255, 255, 255);
+  align-items: center;
+  border-radius: 60px;
+  padding: 10px 20px;
+
+}
+
+.search input {
+  background: transparent;
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 18px 35px;
+  font-size: 20px;
+  color: #000000;
+}
+
+::placeholder {
+  color: black;
+}
+
+.search button img{
+    width: 25px;
+}
+
+.search button {
+  border: 0;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+}
