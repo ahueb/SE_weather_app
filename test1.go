@@ -1,16 +1,21 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	// "log"
+	// "net/http"
+	"os"
+
+	"github.com/ramsgoli/openweathermap"
 )
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("web")))
+	owm := openweathermap.OpenWeatherMap{API_KEY: os.Getenv("OWM_APP_ID")}
+	// http.Handle("/", http.FileServer(http.Dir("web")))
 
-	err := http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
+	// err := http.ListenAndServe(":8080", nil)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// 	return
+	// }
+
 }
