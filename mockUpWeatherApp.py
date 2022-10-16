@@ -107,6 +107,7 @@ class Ui_weatherAPP(object):
         
 
         if weather_data.json()['cod'] == '404':
+            self.weatherDataUpddateLabel.setText(f"No city found")
             print("No City Found")
         else:
             weather = weather_data.json()['weather'][0]['description']
