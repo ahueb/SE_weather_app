@@ -520,7 +520,7 @@ class Ui_weatherAPP(object):
 
         if weather_data.json()['cod'] == '404':
             # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
-            self.weatherDataUpddateLabel.setText(f"No city found")
+            self.cityLabel.setText(f"No city found")
             print("No City Found")
         else:
             # get lat and lon coordinates for five day forecast query
