@@ -375,7 +375,8 @@ class Ui_weatherAPP(object):
 
         return location_data
 
-    def updateWeather(self, weather_data):
+    def updateCurrentWeather(self, weather_data):
+        city = weather_data.json()['name']
         weather = weather_data.json()['weather'][0]['description']
         temp = round(weather_data.json()['main']['temp'])
         windSpeed = round(weather_data.json()['wind']['speed'])
@@ -387,7 +388,7 @@ class Ui_weatherAPP(object):
         im = PIL.Image.open(in_memory_file)
         qIm = ImageQt(im)
         
-
+        self.cityLabel.setText(f"Current City: {city}")
         self.pressureLabel.setText(f"Current Pressure: {pressure} pascals")
         self.weatherDataUpddateLabel.setText(f"Current Weather: {weather}")
         self.humidityLabel.setText(f"Current Humidity: {humidity}%")
@@ -395,181 +396,140 @@ class Ui_weatherAPP(object):
         self.tempLabel.setText(f"Current Temperature: {temp}ºF")
         self.iconLabel.setPixmap(QPixmap.fromImage(qIm))
 
+    def updateFiveDayWeather(self, five_day_weather_data):
+        # 5 day forecast
+
+        # 1
+
+        weather = five_day_weather_data.json()['list'][0]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][0]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][0]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][0]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][0]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][0]['weather'][0]['icon']
+        url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+        in_memory_file = io.BytesIO(url.content)
+        im = PIL.Image.open(in_memory_file)
+        qIm = ImageQt(im)
+        
+        self.labelDayOne.setText(f"One")
+        self.pressureDayOne.setText(f"{pressure} pascals")
+        self.weatherDayOne.setText(f"{weather}")
+        self.humidityDayOne.setText(f"{humidity}%")
+        self.windDayOne.setText(f"{windSpeed} mph")
+        self.tempDayOne.setText(f"{temp}ºF")
+        self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
+        # print(iconId)
+
+
+        # 2
+        
+        weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][1]['weather'][0]['icon']
+        url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+        in_memory_file = io.BytesIO(url.content)
+        im = PIL.Image.open(in_memory_file)
+        qIm = ImageQt(im)
+        
+        self.labelDayTwo.setText(f"Two")
+        self.pressureDayTwo.setText(f"{pressure} pascals")
+        self.weatherDayTwo.setText(f"{weather}")
+        self.humidityDayTwo.setText(f"{humidity}%")
+        self.windDayTwo.setText(f"{windSpeed} mph")
+        self.tempDayTwo.setText(f"{temp}ºF")
+        self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
+
+
+        # 3
+        
+        weather = five_day_weather_data.json()['list'][2]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][2]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][2]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][2]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][2]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][2]['weather'][0]['icon']
+        url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+        in_memory_file = io.BytesIO(url.content)
+        im = PIL.Image.open(in_memory_file)
+        qIm = ImageQt(im)
+        
+        self.labelDayThree.setText(f"Three")
+        self.pressureDayThree.setText(f"{pressure} pascals")
+        self.weatherDayThree.setText(f"{weather}")
+        self.humidityDayThree.setText(f"{humidity}%")
+        self.windDayThree.setText(f"{windSpeed} mph")
+        self.tempDayThree.setText(f"{temp}ºF")
+        # self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
+
+
+        # 4
+        
+        weather = five_day_weather_data.json()['list'][3]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][3]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][3]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][3]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][3]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][3]['weather'][0]['icon']
+        url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+        in_memory_file = io.BytesIO(url.content)
+        im = PIL.Image.open(in_memory_file)
+        qIm = ImageQt(im)
+        
+        self.labelDayFour.setText(f"Four")
+        self.pressureDayFour.setText(f"{pressure} pascals")
+        self.weatherDayFour.setText(f"{weather}")
+        self.humidityDayFour.setText(f"{humidity}%")
+        self.windDayFour.setText(f"{windSpeed} mph")
+        self.tempDayFour.setText(f"{temp}ºF")
+        # self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
+
+
+        # 5
+        
+        weather = five_day_weather_data.json()['list'][4]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][4]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][4]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][4]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][4]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][4]['weather'][0]['icon']
+        url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+        in_memory_file = io.BytesIO(url.content)
+        im = PIL.Image.open(in_memory_file)
+        qIm = ImageQt(im)
+        
+        self.labelDayFive.setText(f"Five")
+        self.pressureDayFive.setText(f"{pressure} pascals")
+        self.weatherDayFive.setText(f"{weather}")
+        self.humidityDayFive.setText(f"{humidity}%")
+        self.windDayFive.setText(f"{windSpeed} mph")
+        self.tempDayFive.setText(f"{temp}ºF")
+        # self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
+
     def getWeather(self, user_location):
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
-        # user_location = self.enterCityLineEdit.text()
         # user_location = "62703"
-
-        # geocoding = requests.get(
-            # f"http://api.openweathermap.org/geo/1.0/direct?q={user_location}&limit=5&appid={api_key}")
-
-        # five_day_weather_data = requests.get(
-        #     f"https://api.openweathermap.org/data/2.5/forecast?q={user_location}&appid={api_key}")
-            # &units=metric&cnt=5
 
         weather_data = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
 
-        
-
-        
 
         if weather_data.json()['cod'] == '404':
             self.weatherDataUpddateLabel.setText(f"No city found")
             print("No City Found")
         else:
-
             lat = weather_data.json()['coord']['lat']
             lon = weather_data.json()['coord']['lon']
             five_day_weather_data = requests.get(
                 f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&appid={api_key}")
-            
-
-            # for item in five_day_weather_data.json()['list'][0]:
-            #     print(item)
-            #     print(five_day_weather_data.json()['list'][0][item])
 
 
-            # self.updateWeather(weather_data)
-
-            
-            city = weather_data.json()['name']
-            weather = weather_data.json()['weather'][0]['description']
-            temp = round(weather_data.json()['main']['temp'])
-            windSpeed = round(weather_data.json()['wind']['speed'])
-            pressure = round(weather_data.json()['main']['pressure'])
-            humidity = weather_data.json()['main']['humidity']
-            iconId = weather_data.json()['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.cityLabel.setText(f"Current City: {city}")
-            self.pressureLabel.setText(f"Current Pressure: {pressure} pascals")
-            self.weatherDataUpddateLabel.setText(f"Current Weather: {weather}")
-            self.humidityLabel.setText(f"Current Humidity: {humidity}%")
-            self.windLabel.setText(f"Current Wind Speed: {windSpeed} mph")
-            self.tempLabel.setText(f"Current Temperature: {temp}ºF")
-            self.iconLabel.setPixmap(QPixmap.fromImage(qIm))
-
-            # print(iconId)
-
-
-            # 5 day forecast
-
-            # 1
-
-            weather = five_day_weather_data.json()['list'][0]['weather'][0]['description']
-            temp = round(five_day_weather_data.json()['list'][0]['main']['temp'])
-            windSpeed = round(five_day_weather_data.json()['list'][0]['wind']['speed'])
-            pressure = round(five_day_weather_data.json()['list'][0]['main']['pressure'])
-            humidity = five_day_weather_data.json()['list'][0]['main']['humidity']
-            iconId = five_day_weather_data.json()['list'][0]['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.labelDayOne.setText(f"One")
-            self.pressureDayOne.setText(f"{pressure} pascals")
-            self.weatherDayOne.setText(f"{weather}")
-            self.humidityDayOne.setText(f"{humidity}%")
-            self.windDayOne.setText(f"{windSpeed} mph")
-            self.tempDayOne.setText(f"{temp}ºF")
-            self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
-            # print(iconId)
-
-
-            # 2
-            
-            weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
-            temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
-            windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
-            pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
-            humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
-            iconId = five_day_weather_data.json()['list'][1]['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.labelDayTwo.setText(f"Two")
-            self.pressureDayTwo.setText(f"{pressure} pascals")
-            self.weatherDayTwo.setText(f"{weather}")
-            self.humidityDayTwo.setText(f"{humidity}%")
-            self.windDayTwo.setText(f"{windSpeed} mph")
-            self.tempDayTwo.setText(f"{temp}ºF")
-            self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
-
-
-            # 3
-            
-            weather = five_day_weather_data.json()['list'][2]['weather'][0]['description']
-            temp = round(five_day_weather_data.json()['list'][2]['main']['temp'])
-            windSpeed = round(five_day_weather_data.json()['list'][2]['wind']['speed'])
-            pressure = round(five_day_weather_data.json()['list'][2]['main']['pressure'])
-            humidity = five_day_weather_data.json()['list'][2]['main']['humidity']
-            iconId = five_day_weather_data.json()['list'][2]['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.labelDayThree.setText(f"Three")
-            self.pressureDayThree.setText(f"{pressure} pascals")
-            self.weatherDayThree.setText(f"{weather}")
-            self.humidityDayThree.setText(f"{humidity}%")
-            self.windDayThree.setText(f"{windSpeed} mph")
-            self.tempDayThree.setText(f"{temp}ºF")
-            # self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
-
-
-            # 4
-            
-            weather = five_day_weather_data.json()['list'][3]['weather'][0]['description']
-            temp = round(five_day_weather_data.json()['list'][3]['main']['temp'])
-            windSpeed = round(five_day_weather_data.json()['list'][3]['wind']['speed'])
-            pressure = round(five_day_weather_data.json()['list'][3]['main']['pressure'])
-            humidity = five_day_weather_data.json()['list'][3]['main']['humidity']
-            iconId = five_day_weather_data.json()['list'][3]['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.labelDayFour.setText(f"Four")
-            self.pressureDayFour.setText(f"{pressure} pascals")
-            self.weatherDayFour.setText(f"{weather}")
-            self.humidityDayFour.setText(f"{humidity}%")
-            self.windDayFour.setText(f"{windSpeed} mph")
-            self.tempDayFour.setText(f"{temp}ºF")
-            # self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
-
-
-            # 5
-            
-            weather = five_day_weather_data.json()['list'][4]['weather'][0]['description']
-            temp = round(five_day_weather_data.json()['list'][4]['main']['temp'])
-            windSpeed = round(five_day_weather_data.json()['list'][4]['wind']['speed'])
-            pressure = round(five_day_weather_data.json()['list'][4]['main']['pressure'])
-            humidity = five_day_weather_data.json()['list'][4]['main']['humidity']
-            iconId = five_day_weather_data.json()['list'][4]['weather'][0]['icon']
-            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            in_memory_file = io.BytesIO(url.content)
-            im = PIL.Image.open(in_memory_file)
-            qIm = ImageQt(im)
-            
-            self.labelDayFive.setText(f"Five")
-            self.pressureDayFive.setText(f"{pressure} pascals")
-            self.weatherDayFive.setText(f"{weather}")
-            self.humidityDayFive.setText(f"{humidity}%")
-            self.windDayFive.setText(f"{windSpeed} mph")
-            self.tempDayFive.setText(f"{temp}ºF")
-            # self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
-
-
+            self.updateCurrentWeather(weather_data)
+            self.updateFiveDayWeather(five_day_weather_data)
             
 
 if __name__ == "__main__":
