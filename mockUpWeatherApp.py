@@ -197,7 +197,7 @@ class Ui_weatherAPP(object):
         # 3
 
         self.iconDayThree = QLabel(weatherAPP)
-        self.iconDayThree.setGeometry(QRect(450, 100, 211, 211))
+        self.iconDayThree.setGeometry(QRect(700, 100, 211, 211))
         self.iconDayThree.setText("")
         self.iconDayThree.setScaledContents(True)
         self.iconDayThree.setObjectName("iconDayThree")
@@ -243,7 +243,7 @@ class Ui_weatherAPP(object):
         # 4
 
         self.icon = QLabel(weatherAPP)
-        self.icon.setGeometry(QRect(450, 100, 211, 211))
+        self.icon.setGeometry(QRect(850, 100, 211, 211))
         self.icon.setText("")
         self.icon.setScaledContents(True)
         self.icon.setObjectName("icon")
@@ -289,7 +289,7 @@ class Ui_weatherAPP(object):
         # 5
 
         self.icon = QLabel(weatherAPP)
-        self.icon.setGeometry(QRect(450, 100, 211, 211))
+        self.icon.setGeometry(QRect(1000, 100, 211, 211))
         self.icon.setText("")
         self.icon.setScaledContents(True)
         self.icon.setObjectName("icon")
@@ -338,7 +338,7 @@ class Ui_weatherAPP(object):
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
         location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
-        self.getWeather(location_string)        
+        self.getWeather(location_string)    
     # retranslateUi
 
     def getLocation(self):
@@ -401,8 +401,6 @@ class Ui_weatherAPP(object):
         self.windDayOne.setText(f"{windSpeed} mph")
         self.tempDayOne.setText(f"{temp}ºF")
         self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
-        # print(iconId)
-
 
         # 2
         
@@ -425,7 +423,6 @@ class Ui_weatherAPP(object):
         self.tempDayTwo.setText(f"{temp}ºF")
         self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
 
-
         # 3
         
         weather = five_day_weather_data.json()['list'][2]['weather'][0]['description']
@@ -447,7 +444,6 @@ class Ui_weatherAPP(object):
         self.tempDayThree.setText(f"{temp}ºF")
         # self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
 
-
         # 4
         
         weather = five_day_weather_data.json()['list'][3]['weather'][0]['description']
@@ -468,7 +464,6 @@ class Ui_weatherAPP(object):
         self.windDayFour.setText(f"{windSpeed} mph")
         self.tempDayFour.setText(f"{temp}ºF")
         # self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
-
 
         # 5
         
@@ -509,7 +504,6 @@ class Ui_weatherAPP(object):
             five_day_weather_data = requests.get(
                 f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&appid={api_key}")
 
-
             self.updateCurrentWeather(weather_data)
             self.updateFiveDayWeather(five_day_weather_data)
             
@@ -521,5 +515,4 @@ if __name__ == "__main__":
     ui = Ui_weatherAPP()
     ui.setupUi(weatherAPP)
     weatherAPP.show()
-    # weatherAPP().get_weather()
     sys.exit(app.exec_())
