@@ -356,10 +356,10 @@ class Ui_weatherAPP(object):
         ip = requests.get('https://api64.ipify.org?format=json').json()['ip']
         location_response = requests.get(f'https://ipapi.co/{ip}/json').json()
 
-        for item in location_response:
-            print(item)
+        # for item in location_response:
+        #     print(item)
 
-        print(location_response['postal'])
+        # print(location_response['postal'])
 
         location_data = {
             "ip": ip,
