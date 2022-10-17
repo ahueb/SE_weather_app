@@ -397,7 +397,7 @@ class Ui_weatherAPP(object):
             lat = weather_data.json()['coord']['lat']
             lon = weather_data.json()['coord']['lon']
             five_day_weather_data = requests.get(
-                f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&appid={api_key}")
+                f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&appid={api_key}")
             
 
             # for item in five_day_weather_data.json()['list'][0]:
