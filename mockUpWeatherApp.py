@@ -16,6 +16,7 @@ class Ui_weatherAPP(object):
         weatherAPP.resize(1080, 720)
         weatherAPP.setStyleSheet(u"")
 
+        # App title UI object placement
         self.weatherAPPLabel = QLabel(weatherAPP)
         self.weatherAPPLabel.setObjectName(u"weatherAPPLabel")
         self.weatherAPPLabel.setGeometry(QRect(480, 20, 101, 51))
@@ -23,6 +24,8 @@ class Ui_weatherAPP(object):
         font.setPointSize(14)
         self.weatherAPPLabel.setFont(font)
 
+
+        # current weather city search box UI object placement
         self.enterCityLineEdit = QLineEdit(weatherAPP)
         self.enterCityLineEdit.setObjectName(u"enterCityLineEdit")
         self.enterCityLineEdit.setGeometry(QRect(220, 110, 171, 41))
@@ -33,59 +36,70 @@ class Ui_weatherAPP(object):
         font1.setPointSize(12)
         self.enterCityLabel.setFont(font1)
 
+        # current weather icon UI object placement
         self.iconLabel = QLabel(weatherAPP)
         self.iconLabel.setGeometry(QRect(30, 450, 211, 211))
         self.iconLabel.setText("")
         self.iconLabel.setScaledContents(True)
         self.iconLabel.setObjectName("iconLabel")
 
+        # "Get Weather" button UI object placement
         self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather(self.enterCityLineEdit.text()))
         self.submitBtn.setObjectName(u"submitBtn")
         self.submitBtn.setGeometry(QRect(460, 620, 141, 51))
 
+        # current location UI object placement
         self.cityLabel = QLabel(weatherAPP)
         self.cityLabel.setObjectName(u"cityLabel")
         self.cityLabel.setGeometry(QRect(30, 150, 321, 51))
         self.cityLabel.setFont(font1)
 
+        # current weather status (summary?) UI object placement
         self.weatherDataUpddateLabel = QLabel(weatherAPP)
         self.weatherDataUpddateLabel.setObjectName(u"weatherDataUpddateLabel")
         self.weatherDataUpddateLabel.setGeometry(QRect(30, 200, 401, 51))
         self.weatherDataUpddateLabel.setFont(font1)
         self.weatherDataUpddateLabel.setStyleSheet(u"")
 
+        # current temperature UI object placement
         self.tempLabel = QLabel(weatherAPP)
         self.tempLabel.setObjectName(u"tempLabel")
         self.tempLabel.setGeometry(QRect(30, 250, 321, 51))
         self.tempLabel.setFont(font1)
 
+        # current wind speed UI object placement
         self.windLabel = QLabel(weatherAPP)
         self.windLabel.setObjectName(u"windLabel")
         self.windLabel.setGeometry(QRect(30, 300, 311, 51))
         self.windLabel.setFont(font1)
 
+        # current pressure UI object placement
         self.pressureLabel = QLabel(weatherAPP)
         self.pressureLabel.setObjectName(u"pressureLabel")
         self.pressureLabel.setGeometry(QRect(30, 350, 311, 51))
         self.pressureLabel.setFont(font1)
 
+        # current humidity UI object placement
         self.humidityLabel = QLabel(weatherAPP)
         self.humidityLabel.setObjectName(u"humidityLabel")
         self.humidityLabel.setGeometry(QRect(30, 400, 311, 51))
         self.humidityLabel.setFont(font1)
 
+        # vertical line separator UI object placement
         self.line = QFrame(weatherAPP)
         self.line.setObjectName(u"line")
         self.line.setGeometry(QRect(420, 100, 20, 511))
         self.line.setFrameShape(QFrame.VLine)
         self.line.setFrameShadow(QFrame.Sunken)
 
+        # horizontal line separator UI object placement
         self.line_2 = QFrame(weatherAPP)
         self.line_2.setObjectName(u"line_2")
         self.line_2.setGeometry(QRect(500, 240, 531, 20))
         self.line_2.setFrameShape(QFrame.HLine)
         self.line_2.setFrameShadow(QFrame.Sunken)
 
+        # function for five day forecast UI setup
         self.setupFiveDayUI()
 
         self.retranslateUi(weatherAPP)
@@ -337,14 +351,18 @@ class Ui_weatherAPP(object):
         self.weatherAPPLabel.setText(QCoreApplication.translate("weatherAPP", u"Weather", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
-        location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
-        self.getWeather(location_string)    
+        # location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
+        # self.getWeather(location_string)
     # retranslateUi
 
     def getLocation(self):
+        # get current user external IP by making request to server that returns IP
         ip = requests.get('https://api64.ipify.org?format=json').json()['ip']
+
+        # get IP location from server that queries IP location database
         location_response = requests.get(f'https://ipapi.co/{ip}/json').json()
 
+        # store location data in dict for easy reference
         location_data = {
             "ip": ip,
             "city": location_response['city'],
@@ -487,24 +505,34 @@ class Ui_weatherAPP(object):
         # self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
 
     def getWeather(self, user_location):
+        # API key, need to remove or something? idk
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
-        # user_location = "62703"
+        # test variable for bypassing user input
+        user_location = "62703"
 
+        # grab weather data JSON and store in variable
         weather_data = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
 
 
         if weather_data.json()['cod'] == '404':
+            # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
             self.weatherDataUpddateLabel.setText(f"No city found")
             print("No City Found")
         else:
+            # get lat and lon coordinates for five day forecast query
             lat = weather_data.json()['coord']['lat']
             lon = weather_data.json()['coord']['lon']
+
+            # get five day forecast JSON and store in variable
             five_day_weather_data = requests.get(
                 f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&appid={api_key}")
 
+            # call function used to update UI with current weather data
             self.updateCurrentWeather(weather_data)
+
+            # call function used to update UI with five day weather forecast
             self.updateFiveDayWeather(five_day_weather_data)
             
 
