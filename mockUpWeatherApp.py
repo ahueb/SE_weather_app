@@ -8,7 +8,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 import requests
 
-# lots of pieces between the label updates within the current and five day forecast functions are repeated, I don't know if any of this can be compressed and encapsulated with further small functions
+# lots of pieces between the label updates within the current and five day forecast functions are repeated,
+# I don't know if any of this can be compressed and encapsulated with further small functions
 
 class Ui_weatherAPP(object):
     def setupUi(self, weatherAPP):
