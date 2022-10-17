@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 import requests
 
+# lots of pieces between the label updates within the current and five day forecast functions are repeated, I don't know if any of this can be compressed and encapsulated with further small functions
 
 class Ui_weatherAPP(object):
     def setupUi(self, weatherAPP):
@@ -351,8 +352,8 @@ class Ui_weatherAPP(object):
         self.weatherAPPLabel.setText(QCoreApplication.translate("weatherAPP", u"Weather", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
-        # location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
-        # self.getWeather(location_string)
+        location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
+        self.getWeather(location_string)
     # retranslateUi
 
     def getLocation(self):
@@ -509,7 +510,7 @@ class Ui_weatherAPP(object):
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
         # test variable for bypassing user input
-        user_location = "62703"
+        # user_location = "62703"
 
         # grab weather data JSON and store in variable
         weather_data = requests.get(
