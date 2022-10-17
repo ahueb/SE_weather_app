@@ -39,7 +39,7 @@ class Ui_weatherAPP(object):
         self.iconLabel.setScaledContents(True)
         self.iconLabel.setObjectName("iconLabel")
 
-        self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather())
+        self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather(self.enterCityLineEdit.text()))
         # self.submitBtn = QPushButton(weatherAPP)
         self.submitBtn.setObjectName(u"submitBtn")
         self.submitBtn.setGeometry(QRect(460, 620, 141, 51))
@@ -346,8 +346,34 @@ class Ui_weatherAPP(object):
         # self.pressureLabel.setText("")
         # # self.humidityLabel.setText("")
         # self.fiveDayForecast.setText(QCoreApplication.translate("weatherAPP", u"5-Day Forecast", None))
-        # self.getWeather()
+        location_string = self.getLocation()['city']
+        blah = self.getLocation()
+        # self.getWeather(self.getLocation()['postal'])
+        self.getWeather(location_string)        
     # retranslateUi
+
+    def getLocation(self):
+        ip = requests.get('https://api64.ipify.org?format=json').json()['ip']
+        location_response = requests.get(f'https://ipapi.co/{ip}/json').json()
+
+        for item in location_response:
+            print(item)
+
+        print(location_response['postal'])
+
+        location_data = {
+            "ip": ip,
+            "city": location_response['city'],
+            "region": location_response['region'],
+            "country": location_response["country_name"],
+            "lat": location_response['latitude'],
+            "lon": location_response['longitude'],
+            "postal": location_response['postal']
+        }
+
+        # print(location_data)
+
+        return location_data
 
     def updateWeather(self, weather_data):
         weather = weather_data.json()['weather'][0]['description']
@@ -369,21 +395,21 @@ class Ui_weatherAPP(object):
         self.tempLabel.setText(f"Current Temperature: {temp}ºF")
         self.iconLabel.setPixmap(QPixmap.fromImage(qIm))
 
-    def getWeather(self):
+    def getWeather(self, user_location):
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
-        user_input = self.enterCityLineEdit.text()
-        # user_input = "62703"
+        # user_location = self.enterCityLineEdit.text()
+        # user_location = "62703"
 
         # geocoding = requests.get(
-            # f"http://api.openweathermap.org/geo/1.0/direct?q={user_input}&limit=5&appid={api_key}")
+            # f"http://api.openweathermap.org/geo/1.0/direct?q={user_location}&limit=5&appid={api_key}")
 
         # five_day_weather_data = requests.get(
-        #     f"https://api.openweathermap.org/data/2.5/forecast?q={user_input}&appid={api_key}")
+        #     f"https://api.openweathermap.org/data/2.5/forecast?q={user_location}&appid={api_key}")
             # &units=metric&cnt=5
 
         weather_data = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={user_input}&units=imperial&APPID={api_key}")
+            f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
 
         
 
