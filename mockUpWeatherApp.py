@@ -148,7 +148,7 @@ class Ui_weatherAPP(object):
         # 2
 
         self.iconDayTwo = QLabel(weatherAPP)
-        self.iconDayTwo.setGeometry(QRect(580, 80, 211, 211))
+        self.iconDayTwo.setGeometry(QRect(600, 80, 211, 211))
         self.iconDayTwo.setText("")
         self.iconDayTwo.setScaledContents(True)
         self.iconDayTwo.setObjectName("iconDayTwo")
@@ -191,7 +191,7 @@ class Ui_weatherAPP(object):
         self.humidityDayTwo.setAlignment(Qt.AlignCenter)
         self.humidityDayTwo.setFont(font2)
 
-        # # 3
+        # 3
 
         # self.icon = QLabel(weatherAPP)
         # self.icon.setGeometry(QRect(450, 100, 211, 211))
@@ -199,45 +199,135 @@ class Ui_weatherAPP(object):
         # self.icon.setScaledContents(True)
         # self.icon.setObjectName("icon")
         
-        # self.labelDay = QLabel(weatherAPP)
-        # self.labelDay.setObjectName(u"labelDay")
-        # self.labelDay.setGeometry(QRect(550, 330, 171, 41))
-        # self.labelDay.setFont(font3)
-        # self.labelDay.setAlignment(Qt.AlignCenter)
-        # self.labelDay.setStyleSheet(u"")
+        self.labelDayThree = QLabel(weatherAPP)
+        self.labelDayThree.setObjectName(u"labelDayThree")
+        self.labelDayThree.setGeometry(QRect(650, 330, 171, 41))
+        self.labelDayThree.setFont(font3)
+        self.labelDayThree.setAlignment(Qt.AlignCenter)
+        self.labelDayThree.setStyleSheet(u"")
 
-        # self.weatherDay = QLabel(weatherAPP)
-        # self.weatherDay.setObjectName(u"weatherDay")
-        # self.weatherDay.setGeometry(QRect(550, 370, 171, 41))
-        # self.weatherDay.setFont(font2)
-        # self.weatherDay.setAlignment(Qt.AlignCenter)
-        # self.weatherDay.setStyleSheet(u"")
+        self.weatherDayThree = QLabel(weatherAPP)
+        self.weatherDayThree.setObjectName(u"weatherDayThree")
+        self.weatherDayThree.setGeometry(QRect(650, 370, 171, 41))
+        self.weatherDayThree.setFont(font2)
+        self.weatherDayThree.setAlignment(Qt.AlignCenter)
+        self.weatherDayThree.setStyleSheet(u"")
 
-        # self.tempDay = QLabel(weatherAPP)
-        # self.tempDay.setObjectName(u"tempDay")
-        # self.tempDay.setGeometry(QRect(550, 410, 171, 41))
-        # self.tempDay.setFont(font2)
-        # self.tempDay.setAlignment(Qt.AlignCenter)
+        self.tempDayThree = QLabel(weatherAPP)
+        self.tempDayThree.setObjectName(u"tempDayThree")
+        self.tempDayThree.setGeometry(QRect(650, 410, 171, 41))
+        self.tempDayThree.setFont(font2)
+        self.tempDayThree.setAlignment(Qt.AlignCenter)
 
-        # self.windDay = QLabel(weatherAPP)
-        # self.windDay.setObjectName(u"windDay")
-        # self.windDay.setGeometry(QRect(550, 450, 171, 41))
-        # self.windDay.setFont(font2)
-        # self.windDay.setAlignment(Qt.AlignCenter)
+        self.windDayThree = QLabel(weatherAPP)
+        self.windDayThree.setObjectName(u"windDayThree")
+        self.windDayThree.setGeometry(QRect(650, 450, 171, 41))
+        self.windDayThree.setFont(font2)
+        self.windDayThree.setAlignment(Qt.AlignCenter)
 
-        # self.pressureDay = QLabel(weatherAPP)
-        # self.pressureDay.setObjectName(u"pressureDay")
-        # self.pressureDay.setGeometry(QRect(550, 490, 171, 41))
-        # self.pressureDay.setFont(font2)
-        # self.pressureDay.setAlignment(Qt.AlignCenter)
+        self.pressureDayThree = QLabel(weatherAPP)
+        self.pressureDayThree.setObjectName(u"pressureDayThree")
+        self.pressureDayThree.setGeometry(QRect(650, 490, 171, 41))
+        self.pressureDayThree.setFont(font2)
+        self.pressureDayThree.setAlignment(Qt.AlignCenter)
 
-        # self.humidityDay = QLabel(weatherAPP)
-        # self.humidityDay.setObjectName(u"humidityDay")
-        # self.humidityDay.setGeometry(QRect(550, 540, 171, 41))
-        # self.humidityDay.setFont(font2)
-        # self.humidityDay.setAlignment(Qt.AlignCenter)
+        self.humidityDayThree = QLabel(weatherAPP)
+        self.humidityDayThree.setObjectName(u"humidityDayThree")
+        self.humidityDayThree.setGeometry(QRect(650, 540, 171, 41))
+        self.humidityDayThree.setFont(font2)
+        self.humidityDayThree.setAlignment(Qt.AlignCenter)
 
+        # 4
+
+        self.icon = QLabel(weatherAPP)
+        self.icon.setGeometry(QRect(450, 100, 211, 211))
+        self.icon.setText("")
+        self.icon.setScaledContents(True)
+        self.icon.setObjectName("icon")
         
+        self.labelDayFour = QLabel(weatherAPP)
+        self.labelDayFour.setObjectName(u"labelDayFour")
+        self.labelDayFour.setGeometry(QRect(750, 330, 171, 41))
+        self.labelDayFour.setFont(font3)
+        self.labelDayFour.setAlignment(Qt.AlignCenter)
+        self.labelDayFour.setStyleSheet(u"")
+
+        self.weatherDayFour = QLabel(weatherAPP)
+        self.weatherDayFour.setObjectName(u"weatherDayFour")
+        self.weatherDayFour.setGeometry(QRect(750, 370, 171, 41))
+        self.weatherDayFour.setFont(font2)
+        self.weatherDayFour.setAlignment(Qt.AlignCenter)
+        self.weatherDayFour.setStyleSheet(u"")
+
+        self.tempDayFour = QLabel(weatherAPP)
+        self.tempDayFour.setObjectName(u"tempDayFour")
+        self.tempDayFour.setGeometry(QRect(750, 410, 171, 41))
+        self.tempDayFour.setFont(font2)
+        self.tempDayFour.setAlignment(Qt.AlignCenter)
+
+        self.windDayFour = QLabel(weatherAPP)
+        self.windDayFour.setObjectName(u"windDayFour")
+        self.windDayFour.setGeometry(QRect(750, 450, 171, 41))
+        self.windDayFour.setFont(font2)
+        self.windDayFour.setAlignment(Qt.AlignCenter)
+
+        self.pressureDayFour = QLabel(weatherAPP)
+        self.pressureDayFour.setObjectName(u"pressureDayFour")
+        self.pressureDayFour.setGeometry(QRect(750, 490, 171, 41))
+        self.pressureDayFour.setFont(font2)
+        self.pressureDayFour.setAlignment(Qt.AlignCenter)
+
+        self.humidityDayFour = QLabel(weatherAPP)
+        self.humidityDayFour.setObjectName(u"humidityDayFour")
+        self.humidityDayFour.setGeometry(QRect(750, 540, 171, 41))
+        self.humidityDayFour.setFont(font2)
+        self.humidityDayFour.setAlignment(Qt.AlignCenter)
+
+        # 5
+
+        self.icon = QLabel(weatherAPP)
+        self.icon.setGeometry(QRect(450, 100, 211, 211))
+        self.icon.setText("")
+        self.icon.setScaledContents(True)
+        self.icon.setObjectName("icon")
+        
+        self.labelDayFive = QLabel(weatherAPP)
+        self.labelDayFive.setObjectName(u"labelDayFive")
+        self.labelDayFive.setGeometry(QRect(850, 330, 171, 41))
+        self.labelDayFive.setFont(font3)
+        self.labelDayFive.setAlignment(Qt.AlignCenter)
+        self.labelDayFive.setStyleSheet(u"")
+
+        self.weatherDayFive = QLabel(weatherAPP)
+        self.weatherDayFive.setObjectName(u"weatherDayFive")
+        self.weatherDayFive.setGeometry(QRect(850, 370, 171, 41))
+        self.weatherDayFive.setFont(font2)
+        self.weatherDayFive.setAlignment(Qt.AlignCenter)
+        self.weatherDayFive.setStyleSheet(u"")
+
+        self.tempDayFive = QLabel(weatherAPP)
+        self.tempDayFive.setObjectName(u"tempDayFive")
+        self.tempDayFive.setGeometry(QRect(850, 410, 171, 41))
+        self.tempDayFive.setFont(font2)
+        self.tempDayFive.setAlignment(Qt.AlignCenter)
+
+        self.windDayFive = QLabel(weatherAPP)
+        self.windDayFive.setObjectName(u"windDayFive")
+        self.windDayFive.setGeometry(QRect(850, 450, 171, 41))
+        self.windDayFive.setFont(font2)
+        self.windDayFive.setAlignment(Qt.AlignCenter)
+
+        self.pressureDayFive = QLabel(weatherAPP)
+        self.pressureDayFive.setObjectName(u"pressureDayFive")
+        self.pressureDayFive.setGeometry(QRect(850, 490, 171, 41))
+        self.pressureDayFive.setFont(font2)
+        self.pressureDayFive.setAlignment(Qt.AlignCenter)
+
+        self.humidityDayFive = QLabel(weatherAPP)
+        self.humidityDayFive.setObjectName(u"humidityDayFive")
+        self.humidityDayFive.setGeometry(QRect(850, 540, 171, 41))
+        self.humidityDayFive.setFont(font2)
+        self.humidityDayFive.setAlignment(Qt.AlignCenter)
 
 
         self.retranslateUi(weatherAPP)
@@ -338,7 +428,7 @@ class Ui_weatherAPP(object):
             self.tempLabel.setText(f"Current Temperature: {temp}ºF")
             self.iconLabel.setPixmap(QPixmap.fromImage(qIm))
 
-            print(iconId)
+            # print(iconId)
 
 
             # 5 day forecast
@@ -363,7 +453,7 @@ class Ui_weatherAPP(object):
             self.windDayOne.setText(f"{windSpeed} mph")
             self.tempDayOne.setText(f"{temp}ºF")
             self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
-            print(iconId)
+            # print(iconId)
 
 
             # 2
@@ -388,70 +478,70 @@ class Ui_weatherAPP(object):
             self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
 
 
-            # # 3
+            # 3
             
-            # weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
-            # temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
-            # windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
-            # pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
-            # humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
-            # iconId = five_day_weather_data.json()['list'][1]['weather'][1]['icon']
-            # url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            # in_memory_file = io.BytesIO(url.content)
-            # im = PIL.Image.open(in_memory_file)
-            # qIm = ImageQt(im)
+            weather = five_day_weather_data.json()['list'][2]['weather'][0]['description']
+            temp = round(five_day_weather_data.json()['list'][2]['main']['temp'])
+            windSpeed = round(five_day_weather_data.json()['list'][2]['wind']['speed'])
+            pressure = round(five_day_weather_data.json()['list'][2]['main']['pressure'])
+            humidity = five_day_weather_data.json()['list'][2]['main']['humidity']
+            iconId = five_day_weather_data.json()['list'][2]['weather'][0]['icon']
+            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+            in_memory_file = io.BytesIO(url.content)
+            im = PIL.Image.open(in_memory_file)
+            qIm = ImageQt(im)
             
-            # self.labelDay.setText(f"One")
-            # self.pressureDay.setText(f"{pressure} pascals")
-            # self.weatherDay.setText(f"{weather}")
-            # self.humidityDay.setText(f"{humidity}%")
-            # self.windDay.setText(f"{windSpeed} mph")
-            # self.tempDay.setText(f"{temp}ºF")
-            # # self.iconDay.setPixmap(QPixmap.fromImage(qIm))
+            self.labelDayThree.setText(f"Three")
+            self.pressureDayThree.setText(f"{pressure} pascals")
+            self.weatherDayThree.setText(f"{weather}")
+            self.humidityDayThree.setText(f"{humidity}%")
+            self.windDayThree.setText(f"{windSpeed} mph")
+            self.tempDayThree.setText(f"{temp}ºF")
+            # self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
 
 
-            # # 4
+            # 4
             
-            # weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
-            # temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
-            # windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
-            # pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
-            # humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
-            # iconId = five_day_weather_data.json()['list'][1]['weather'][1]['icon']
-            # url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            # in_memory_file = io.BytesIO(url.content)
-            # im = PIL.Image.open(in_memory_file)
-            # qIm = ImageQt(im)
+            weather = five_day_weather_data.json()['list'][3]['weather'][0]['description']
+            temp = round(five_day_weather_data.json()['list'][3]['main']['temp'])
+            windSpeed = round(five_day_weather_data.json()['list'][3]['wind']['speed'])
+            pressure = round(five_day_weather_data.json()['list'][3]['main']['pressure'])
+            humidity = five_day_weather_data.json()['list'][3]['main']['humidity']
+            iconId = five_day_weather_data.json()['list'][3]['weather'][0]['icon']
+            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+            in_memory_file = io.BytesIO(url.content)
+            im = PIL.Image.open(in_memory_file)
+            qIm = ImageQt(im)
             
-            # self.labelDay.setText(f"One")
-            # self.pressureDay.setText(f"{pressure} pascals")
-            # self.weatherDay.setText(f"{weather}")
-            # self.humidityDay.setText(f"{humidity}%")
-            # self.windDay.setText(f"{windSpeed} mph")
-            # self.tempDay.setText(f"{temp}ºF")
-            # # self.iconDay.setPixmap(QPixmap.fromImage(qIm))
+            self.labelDayFour.setText(f"Four")
+            self.pressureDayFour.setText(f"{pressure} pascals")
+            self.weatherDayFour.setText(f"{weather}")
+            self.humidityDayFour.setText(f"{humidity}%")
+            self.windDayFour.setText(f"{windSpeed} mph")
+            self.tempDayFour.setText(f"{temp}ºF")
+            # self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
 
 
-            # # 5
+            # 5
             
-            # weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
-            # temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
-            # windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
-            # pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
-            # humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
-            # iconId = five_day_weather_data.json()['list'][1]['weather'][1]['icon']
-            # url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
-            # in_memory_file = io.BytesIO(url.content)
-            # im = PIL.Image.open(in_memory_file)
-            # qIm = ImageQt(im)
+            weather = five_day_weather_data.json()['list'][4]['weather'][0]['description']
+            temp = round(five_day_weather_data.json()['list'][4]['main']['temp'])
+            windSpeed = round(five_day_weather_data.json()['list'][4]['wind']['speed'])
+            pressure = round(five_day_weather_data.json()['list'][4]['main']['pressure'])
+            humidity = five_day_weather_data.json()['list'][4]['main']['humidity']
+            iconId = five_day_weather_data.json()['list'][4]['weather'][0]['icon']
+            url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
+            in_memory_file = io.BytesIO(url.content)
+            im = PIL.Image.open(in_memory_file)
+            qIm = ImageQt(im)
             
-            # self.labelDay.setText(f"One")
-            # self.pressureDay.setText(f"{pressure} pascals")
-            # self.weatherDay.setText(f"{weather}")
-            # self.humidityDay.setText(f"{humidity}%")
-            # self.windDay.setText(f"{windSpeed} mph")
-            # self.tempDay.setText(f"{temp}ºF")
-            # # self.iconDay.setPixmap(QPixmap.fromImage(qIm))
+            self.labelDayFive.setText(f"Five")
+            self.pressureDayFive.setText(f"{pressure} pascals")
+            self.weatherDayFive.setText(f"{weather}")
+            self.humidityDayFive.setText(f"{humidity}%")
+            self.windDayFive.setText(f"{windSpeed} mph")
+            self.tempDayFive.setText(f"{temp}ºF")
+            # self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
 
 
             
