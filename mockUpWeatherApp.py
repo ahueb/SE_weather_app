@@ -42,7 +42,7 @@ class Ui_weatherAPP(object):
         self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather())
         # self.submitBtn = QPushButton(weatherAPP)
         self.submitBtn.setObjectName(u"submitBtn")
-        self.submitBtn.setGeometry(QRect(570, 620, 141, 51))
+        self.submitBtn.setGeometry(QRect(460, 620, 141, 51))
 
         self.cityLabel = QLabel(weatherAPP)
         self.cityLabel.setObjectName(u"cityLabel")
@@ -75,9 +75,9 @@ class Ui_weatherAPP(object):
         self.humidityLabel.setGeometry(QRect(30, 400, 311, 51))
         self.humidityLabel.setFont(font1)
 
-        self.fiveDayForecast = QPushButton(weatherAPP)
-        self.fiveDayForecast.setObjectName(u"fiveDayForecast")
-        self.fiveDayForecast.setGeometry(QRect(390, 620, 141, 51))
+        # self.fiveDayForecast = QPushButton(weatherAPP)
+        # self.fiveDayForecast.setObjectName(u"fiveDayForecast")
+        # self.fiveDayForecast.setGeometry(QRect(390, 620, 141, 51))
 
         self.line = QFrame(weatherAPP)
         self.line.setObjectName(u"line")
@@ -339,14 +339,14 @@ class Ui_weatherAPP(object):
         weatherAPP.setWindowTitle(QCoreApplication.translate("weatherAPP", u"weatherAPP", None))
         self.weatherAPPLabel.setText(QCoreApplication.translate("weatherAPP", u"Weather", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
-        self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Current Forecast", None))
+        self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
         # self.weatherDataUpddateLabel.setText("")
         # self.tempLabel.setText("")
         # self.windLabel.setText("")
         # self.pressureLabel.setText("")
-        # self.humidityLabel.setText("")
-        self.fiveDayForecast.setText(QCoreApplication.translate("weatherAPP", u"5-Day Forecast", None))
-        self.getWeather()
+        # # self.humidityLabel.setText("")
+        # self.fiveDayForecast.setText(QCoreApplication.translate("weatherAPP", u"5-Day Forecast", None))
+        # self.getWeather()
     # retranslateUi
 
     def updateWeather(self, weather_data):
@@ -372,8 +372,8 @@ class Ui_weatherAPP(object):
     def getWeather(self):
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
-        # user_input = self.enterCityLineEdit.text()
-        user_input = "62703"
+        user_input = self.enterCityLineEdit.text()
+        # user_input = "62703"
 
         # geocoding = requests.get(
             # f"http://api.openweathermap.org/geo/1.0/direct?q={user_input}&limit=5&appid={api_key}")
