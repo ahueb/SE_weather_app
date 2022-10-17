@@ -40,7 +40,6 @@ class Ui_weatherAPP(object):
         self.iconLabel.setObjectName("iconLabel")
 
         self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather(self.enterCityLineEdit.text()))
-        # self.submitBtn = QPushButton(weatherAPP)
         self.submitBtn.setObjectName(u"submitBtn")
         self.submitBtn.setGeometry(QRect(460, 620, 141, 51))
 
@@ -75,10 +74,6 @@ class Ui_weatherAPP(object):
         self.humidityLabel.setGeometry(QRect(30, 400, 311, 51))
         self.humidityLabel.setFont(font1)
 
-        # self.fiveDayForecast = QPushButton(weatherAPP)
-        # self.fiveDayForecast.setObjectName(u"fiveDayForecast")
-        # self.fiveDayForecast.setGeometry(QRect(390, 620, 141, 51))
-
         self.line = QFrame(weatherAPP)
         self.line.setObjectName(u"line")
         self.line.setGeometry(QRect(420, 100, 20, 511))
@@ -91,6 +86,14 @@ class Ui_weatherAPP(object):
         self.line_2.setFrameShape(QFrame.HLine)
         self.line_2.setFrameShadow(QFrame.Sunken)
 
+        self.setupFiveDayUI()
+
+        self.retranslateUi(weatherAPP)
+
+        QMetaObject.connectSlotsByName(weatherAPP)
+    # setupUi
+
+    def setupFiveDayUI(self):
         # 5 day forecast:
         font2 = QFont()
         font2.setPointSize(8)
@@ -193,11 +196,11 @@ class Ui_weatherAPP(object):
 
         # 3
 
-        # self.icon = QLabel(weatherAPP)
-        # self.icon.setGeometry(QRect(450, 100, 211, 211))
-        # self.icon.setText("")
-        # self.icon.setScaledContents(True)
-        # self.icon.setObjectName("icon")
+        self.iconDayThree = QLabel(weatherAPP)
+        self.iconDayThree.setGeometry(QRect(450, 100, 211, 211))
+        self.iconDayThree.setText("")
+        self.iconDayThree.setScaledContents(True)
+        self.iconDayThree.setObjectName("iconDayThree")
         
         self.labelDayThree = QLabel(weatherAPP)
         self.labelDayThree.setObjectName(u"labelDayThree")
@@ -329,37 +332,18 @@ class Ui_weatherAPP(object):
         self.humidityDayFive.setFont(font2)
         self.humidityDayFive.setAlignment(Qt.AlignCenter)
 
-
-        self.retranslateUi(weatherAPP)
-
-        QMetaObject.connectSlotsByName(weatherAPP)
-    # setupUi
-
     def retranslateUi(self, weatherAPP):
         weatherAPP.setWindowTitle(QCoreApplication.translate("weatherAPP", u"weatherAPP", None))
         self.weatherAPPLabel.setText(QCoreApplication.translate("weatherAPP", u"Weather", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
-        # self.weatherDataUpddateLabel.setText("")
-        # self.tempLabel.setText("")
-        # self.windLabel.setText("")
-        # self.pressureLabel.setText("")
-        # # self.humidityLabel.setText("")
-        # self.fiveDayForecast.setText(QCoreApplication.translate("weatherAPP", u"5-Day Forecast", None))
-        location_string = self.getLocation()['city']
-        blah = self.getLocation()
-        # self.getWeather(self.getLocation()['postal'])
+        location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
         self.getWeather(location_string)        
     # retranslateUi
 
     def getLocation(self):
         ip = requests.get('https://api64.ipify.org?format=json').json()['ip']
         location_response = requests.get(f'https://ipapi.co/{ip}/json').json()
-
-        # for item in location_response:
-        #     print(item)
-
-        # print(location_response['postal'])
 
         location_data = {
             "ip": ip,
@@ -370,8 +354,6 @@ class Ui_weatherAPP(object):
             "lon": location_response['longitude'],
             "postal": location_response['postal']
         }
-
-        # print(location_data)
 
         return location_data
 
