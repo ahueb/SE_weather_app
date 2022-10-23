@@ -7,6 +7,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 import requests
+import datetime
 
 
 # lots of pieces between the label updates within the current and five day forecast functions are repeated,
@@ -120,7 +121,7 @@ class Ui_weatherAPP(object):
         font3 = QFont()
         font3.setPointSize(12)
         font3.setBold(True)
-
+        
         # 1
 
         self.iconDayOne = QLabel(weatherAPP)
@@ -411,14 +412,16 @@ class Ui_weatherAPP(object):
 
         #Will need to take the timeData and convert it to something readable
 
+        format = "%Y-%m-%d %H:%M:%S"
+
         # 1
-        timeData = five_day_weather_data.json()['list'][0]['dt_txt']
-        weather = five_day_weather_data.json()['list'][0]['weather'][0]['description']
-        temp = round(five_day_weather_data.json()['list'][0]['main']['temp'])
-        windSpeed = round(five_day_weather_data.json()['list'][0]['wind']['speed'])
-        pressure = round(five_day_weather_data.json()['list'][0]['main']['pressure'])
-        humidity = five_day_weather_data.json()['list'][0]['main']['humidity']
-        iconId = five_day_weather_data.json()['list'][0]['weather'][0]['icon']
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][5]['dt_txt'], format).strftime('%Y-%m-%d')
+        weather = five_day_weather_data.json()['list'][5]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][5]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][5]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][5]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][5]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][5]['weather'][0]['icon']
         url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
         in_memory_file = io.BytesIO(url.content)
         im = PIL.Image.open(in_memory_file)
@@ -435,13 +438,13 @@ class Ui_weatherAPP(object):
         self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
 
         # 2
-        timeData = five_day_weather_data.json()['list'][1]['dt_txt']
-        weather = five_day_weather_data.json()['list'][1]['weather'][0]['description']
-        temp = round(five_day_weather_data.json()['list'][1]['main']['temp'])
-        windSpeed = round(five_day_weather_data.json()['list'][1]['wind']['speed'])
-        pressure = round(five_day_weather_data.json()['list'][1]['main']['pressure'])
-        humidity = five_day_weather_data.json()['list'][1]['main']['humidity']
-        iconId = five_day_weather_data.json()['list'][1]['weather'][0]['icon']
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][13]['dt_txt'], format).strftime('%Y-%m-%d')
+        weather = five_day_weather_data.json()['list'][13]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][13]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][13]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][13]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][13]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][13]['weather'][0]['icon']
         url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
         in_memory_file = io.BytesIO(url.content)
         im = PIL.Image.open(in_memory_file)
@@ -456,13 +459,13 @@ class Ui_weatherAPP(object):
         self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
 
         # 3
-        timeData = five_day_weather_data.json()['list'][2]['dt_txt']
-        weather = five_day_weather_data.json()['list'][2]['weather'][0]['description']
-        temp = round(five_day_weather_data.json()['list'][2]['main']['temp'])
-        windSpeed = round(five_day_weather_data.json()['list'][2]['wind']['speed'])
-        pressure = round(five_day_weather_data.json()['list'][2]['main']['pressure'])
-        humidity = five_day_weather_data.json()['list'][2]['main']['humidity']
-        iconId = five_day_weather_data.json()['list'][2]['weather'][0]['icon']
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][21]['dt_txt'], format).strftime('%Y-%m-%d')
+        weather = five_day_weather_data.json()['list'][21]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][21]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][21]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][21]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][21]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][21]['weather'][0]['icon']
         url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
         in_memory_file = io.BytesIO(url.content)
         im = PIL.Image.open(in_memory_file)
@@ -477,13 +480,13 @@ class Ui_weatherAPP(object):
         self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
 
         # 4
-        timeData = five_day_weather_data.json()['list'][3]['dt_txt']
-        weather = five_day_weather_data.json()['list'][3]['weather'][0]['description']
-        temp = round(five_day_weather_data.json()['list'][3]['main']['temp'])
-        windSpeed = round(five_day_weather_data.json()['list'][3]['wind']['speed'])
-        pressure = round(five_day_weather_data.json()['list'][3]['main']['pressure'])
-        humidity = five_day_weather_data.json()['list'][3]['main']['humidity']
-        iconId = five_day_weather_data.json()['list'][3]['weather'][0]['icon']
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][29]['dt_txt'], format).strftime('%Y-%m-%d')
+        weather = five_day_weather_data.json()['list'][29]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][29]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][29]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][29]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][29]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][29]['weather'][0]['icon']
         url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
         in_memory_file = io.BytesIO(url.content)
         im = PIL.Image.open(in_memory_file)
@@ -498,13 +501,13 @@ class Ui_weatherAPP(object):
         self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
 
         # 5
-        timeData = five_day_weather_data.json()['list'][4]['dt_txt']
-        weather = five_day_weather_data.json()['list'][4]['weather'][0]['description']
-        temp = round(five_day_weather_data.json()['list'][4]['main']['temp'])
-        windSpeed = round(five_day_weather_data.json()['list'][4]['wind']['speed'])
-        pressure = round(five_day_weather_data.json()['list'][4]['main']['pressure'])
-        humidity = five_day_weather_data.json()['list'][4]['main']['humidity']
-        iconId = five_day_weather_data.json()['list'][4]['weather'][0]['icon']
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][37]['dt_txt'], format).strftime('%Y-%m-%d')
+        weather = five_day_weather_data.json()['list'][37]['weather'][0]['description']
+        temp = round(five_day_weather_data.json()['list'][37]['main']['temp'])
+        windSpeed = round(five_day_weather_data.json()['list'][37]['wind']['speed'])
+        pressure = round(five_day_weather_data.json()['list'][37]['main']['pressure'])
+        humidity = five_day_weather_data.json()['list'][37]['main']['humidity']
+        iconId = five_day_weather_data.json()['list'][37]['weather'][0]['icon']
         url = requests.get(f"http://openweathermap.org/img/wn/{iconId}@2x.png")
         in_memory_file = io.BytesIO(url.content)
         im = PIL.Image.open(in_memory_file)
@@ -544,19 +547,64 @@ class Ui_weatherAPP(object):
                 f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&cnt=50&appid={api_key}")
 
             # call function used to update UI with current weather data
-            # self.updateCurrentWeather(weather_data)
+            self.updateCurrentWeather(weather_data)
 
             # call function used to update UI with five day weather forecast
-            # self.updateFiveDayWeather(five_day_weather_data)
+            self.updateFiveDayWeather(five_day_weather_data)
 
-
+            # print(five_day_weather_data.json()['list'][0]['dt_txt'])
             # print(five_day_weather_data.json()['list'])
-            for item in five_day_weather_data.json()['list']:
-                print(item)
+            # for item in five_day_weather_data.json()['list']:
+            #     print(item)
                 # for other_item in five_day_weather_data['list']:
                 #     print(other_item)
-                break
+                # break
             
+def getWeather(user_location):
+    # API key, need to remove or something? idk
+    api_key = 'b6139f6046526366147abd5e0a2919ed'
+
+    # test variable for bypassing user input
+    # user_location = "62703"
+
+    # grab weather data JSON and store in variable
+    weather_data = requests.get(
+        f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
+
+
+    if weather_data.json()['cod'] == '404':
+        # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
+        self.cityLabel.setText(f"No city found")
+        print("No City Found")
+    else:
+        # get lat and lon coordinates for five day forecast query
+        lat = weather_data.json()['coord']['lat']
+        lon = weather_data.json()['coord']['lon']
+
+        # get five day forecast JSON and store in variable
+        five_day_weather_data = requests.get(
+            f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&cnt=40&appid={api_key}")
+
+        # call function used to update UI with current weather data
+        # self.updateCurrentWeather(weather_data)
+
+        # call function used to update UI with five day weather forecast
+        # self.updateFiveDayWeather(five_day_weather_data)
+
+        for index, blah in enumerate(five_day_weather_data.json()['list']):
+            format = "%Y-%m-%d %H:%M:%S"
+            dt_object = datetime.datetime.strptime(blah['dt_txt'], format)
+            if dt_object.hour == 12:
+                print(dt_object)
+                print(index)
+                print(dt_object.hour)
+            # print(blah['dt_txt'])
+        # print(five_day_weather_data.json()['list'])
+        # for item in five_day_weather_data.json()['list']:
+        #     print(item)
+            # for other_item in five_day_weather_data['list']:
+            #     print(other_item)
+            # break
             
 
 if __name__ == "__main__":
@@ -567,3 +615,5 @@ if __name__ == "__main__":
     ui.setupUi(weatherAPP)
     weatherAPP.show()
     sys.exit(app.exec_())
+
+    # getWeather("62703")
