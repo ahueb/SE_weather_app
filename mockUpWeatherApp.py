@@ -415,7 +415,7 @@ class Ui_weatherAPP(object):
         format = "%Y-%m-%d %H:%M:%S"
 
         # 1
-        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][5]['dt_txt'], format).strftime('%Y-%m-%d')
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][5]['dt_txt'], format).strftime('%m-%d')
         weather = five_day_weather_data.json()['list'][5]['weather'][0]['description']
         temp = round(five_day_weather_data.json()['list'][5]['main']['temp'])
         windSpeed = round(five_day_weather_data.json()['list'][5]['wind']['speed'])
@@ -438,7 +438,7 @@ class Ui_weatherAPP(object):
         self.iconDayOne.setPixmap(QPixmap.fromImage(qIm))
 
         # 2
-        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][13]['dt_txt'], format).strftime('%Y-%m-%d')
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][13]['dt_txt'], format).strftime('%m-%d')
         weather = five_day_weather_data.json()['list'][13]['weather'][0]['description']
         temp = round(five_day_weather_data.json()['list'][13]['main']['temp'])
         windSpeed = round(five_day_weather_data.json()['list'][13]['wind']['speed'])
@@ -459,7 +459,7 @@ class Ui_weatherAPP(object):
         self.iconDayTwo.setPixmap(QPixmap.fromImage(qIm))
 
         # 3
-        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][21]['dt_txt'], format).strftime('%Y-%m-%d')
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][21]['dt_txt'], format).strftime('%m-%d')
         weather = five_day_weather_data.json()['list'][21]['weather'][0]['description']
         temp = round(five_day_weather_data.json()['list'][21]['main']['temp'])
         windSpeed = round(five_day_weather_data.json()['list'][21]['wind']['speed'])
@@ -480,7 +480,7 @@ class Ui_weatherAPP(object):
         self.iconDayThree.setPixmap(QPixmap.fromImage(qIm))
 
         # 4
-        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][29]['dt_txt'], format).strftime('%Y-%m-%d')
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][29]['dt_txt'], format).strftime('%m-%d')
         weather = five_day_weather_data.json()['list'][29]['weather'][0]['description']
         temp = round(five_day_weather_data.json()['list'][29]['main']['temp'])
         windSpeed = round(five_day_weather_data.json()['list'][29]['wind']['speed'])
@@ -501,7 +501,7 @@ class Ui_weatherAPP(object):
         self.iconDayFour.setPixmap(QPixmap.fromImage(qIm))
 
         # 5
-        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][37]['dt_txt'], format).strftime('%Y-%m-%d')
+        timeData = datetime.datetime.strptime(five_day_weather_data.json()['list'][37]['dt_txt'], format).strftime('%m-%d')
         weather = five_day_weather_data.json()['list'][37]['weather'][0]['description']
         temp = round(five_day_weather_data.json()['list'][37]['main']['temp'])
         windSpeed = round(five_day_weather_data.json()['list'][37]['wind']['speed'])
