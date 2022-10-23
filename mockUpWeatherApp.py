@@ -29,21 +29,39 @@ class Ui_weatherAPP(object):
         font.setPointSize(14)
         self.weatherAPPLabel.setFont(font)
 
+        # 5 Day Forecast Label
+        self.fiveDayLabel = QLabel(weatherAPP)
+        self.fiveDayLabel.setObjectName(u"fiveDayLabel")
+        self.fiveDayLabel.setGeometry(QRect(675, 75, 150, 51))
+        font = QFont()
+        font.setPointSize(14)
+        self.fiveDayLabel.setFont(font)
+
+        # Current Forecast Label
+        self.currentForecastLabel = QLabel(weatherAPP)
+        self.currentForecastLabel.setObjectName(u"currentForecastLabel")
+        self.currentForecastLabel.setGeometry(QRect(100, 75, 150, 51))
+        font = QFont()
+        font.setPointSize(14)
+        self.currentForecastLabel.setFont(font)
 
         # current weather city search box UI object placement
         self.enterCityLineEdit = QLineEdit(weatherAPP)
         self.enterCityLineEdit.setObjectName(u"enterCityLineEdit")
-        self.enterCityLineEdit.setGeometry(QRect(220, 50, 171, 41))
+        self.enterCityLineEdit.setGeometry(QRect(545, 20, 171, 41))
+        self.enterCityLineEdit.setMaxLength(85)
         self.enterCityLabel = QLabel(weatherAPP)
         self.enterCityLabel.setObjectName(u"enterCityLabel")
-        self.enterCityLabel.setGeometry(QRect(10, 50, 181, 41))
+        self.enterCityLabel.setGeometry(QRect(350, 20, 181, 41))
         font1 = QFont()
         font1.setPointSize(12)
         self.enterCityLabel.setFont(font1)
+        self.enterCityLineEdit.setFont(font1)
+
 
         # current weather icon UI object placement
         self.iconLabel = QLabel(weatherAPP)
-        self.iconLabel.setGeometry(QRect(30, 450, 211, 211))
+        self.iconLabel.setGeometry(QRect(65, 450, 211, 211))
         self.iconLabel.setText("")
         self.iconLabel.setScaledContents(True)
         self.iconLabel.setObjectName("iconLabel")
@@ -56,38 +74,38 @@ class Ui_weatherAPP(object):
         # current location UI object placement
         self.cityLabel = QLabel(weatherAPP)
         self.cityLabel.setObjectName(u"cityLabel")
-        self.cityLabel.setGeometry(QRect(30, 150, 321, 51))
+        self.cityLabel.setGeometry(QRect(115, 150, 321, 51))
         self.cityLabel.setFont(font1)
 
         # current weather status (summary?) UI object placement
         self.weatherDataUpddateLabel = QLabel(weatherAPP)
         self.weatherDataUpddateLabel.setObjectName(u"weatherDataUpddateLabel")
-        self.weatherDataUpddateLabel.setGeometry(QRect(30, 200, 401, 51))
+        self.weatherDataUpddateLabel.setGeometry(QRect(115, 200, 401, 51))
         self.weatherDataUpddateLabel.setFont(font1)
         self.weatherDataUpddateLabel.setStyleSheet(u"")
 
         # current temperature UI object placement
         self.tempLabel = QLabel(weatherAPP)
         self.tempLabel.setObjectName(u"tempLabel")
-        self.tempLabel.setGeometry(QRect(30, 250, 321, 51))
+        self.tempLabel.setGeometry(QRect(115, 250, 321, 51))
         self.tempLabel.setFont(font1)
 
         # current wind speed UI object placement
         self.windLabel = QLabel(weatherAPP)
         self.windLabel.setObjectName(u"windLabel")
-        self.windLabel.setGeometry(QRect(30, 300, 311, 51))
+        self.windLabel.setGeometry(QRect(115, 300, 311, 51))
         self.windLabel.setFont(font1)
 
         # current pressure UI object placement
         self.pressureLabel = QLabel(weatherAPP)
         self.pressureLabel.setObjectName(u"pressureLabel")
-        self.pressureLabel.setGeometry(QRect(30, 350, 311, 51))
+        self.pressureLabel.setGeometry(QRect(115, 350, 311, 51))
         self.pressureLabel.setFont(font1)
 
         # current humidity UI object placement
         self.humidityLabel = QLabel(weatherAPP)
         self.humidityLabel.setObjectName(u"humidityLabel")
-        self.humidityLabel.setGeometry(QRect(30, 400, 311, 51))
+        self.humidityLabel.setGeometry(QRect(115, 400, 311, 51))
         self.humidityLabel.setFont(font1)
 
         # vertical line separator UI object placement
@@ -358,8 +376,9 @@ class Ui_weatherAPP(object):
         self.humidityDayFive.setAlignment(Qt.AlignCenter)
 
     def retranslateUi(self, weatherAPP):
-        weatherAPP.setWindowTitle(QCoreApplication.translate("weatherAPP", u"weatherAPP", None))
-        self.weatherAPPLabel.setText(QCoreApplication.translate("weatherAPP", u"Weather", None))
+        weatherAPP.setWindowTitle(QCoreApplication.translate("weatherAPP", u"Weather Application", None))
+        self.currentForecastLabel.setText(QCoreApplication.translate("weatherAPP", u"Current Weather", None))
+        self.fiveDayLabel.setText(QCoreApplication.translate("weatherAPP", u"5 Day Forecast", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
         location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
@@ -399,12 +418,12 @@ class Ui_weatherAPP(object):
         im = PIL.Image.open(in_memory_file)
         qIm = ImageQt(im)
         
-        self.cityLabel.setText(f"Current City: {city}")
-        self.pressureLabel.setText(f"Current Pressure: {pressure} pascals")
-        self.weatherDataUpddateLabel.setText(f"Current Weather: {weather}")
-        self.humidityLabel.setText(f"Current Humidity: {humidity}%")
-        self.windLabel.setText(f"Current Wind Speed: {windSpeed} mph")
-        self.tempLabel.setText(f"Current Temperature: {temp}ºF")
+        self.cityLabel.setText(f"{city}")
+        self.pressureLabel.setText(f"{pressure} pascals")
+        self.weatherDataUpddateLabel.setText(f"{weather}")
+        self.humidityLabel.setText(f"{humidity}%")
+        self.windLabel.setText(f"{windSpeed} mph")
+        self.tempLabel.setText(f"{temp}ºF")
         self.iconLabel.setPixmap(QPixmap.fromImage(qIm))
 
     def updateFiveDayWeather(self, five_day_weather_data):
@@ -560,7 +579,7 @@ class Ui_weatherAPP(object):
                 #     print(other_item)
                 # break
             
-def getWeather(user_location):
+def getWeather(self, user_location):
     # API key, need to remove or something? idk
     api_key = 'b6139f6046526366147abd5e0a2919ed'
 
@@ -615,5 +634,3 @@ if __name__ == "__main__":
     ui.setupUi(weatherAPP)
     weatherAPP.show()
     sys.exit(app.exec_())
-
-    # getWeather("62703")
