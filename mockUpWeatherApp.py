@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QPushButton
 import requests
 import datetime
-
+from PyQt5.QtWidgets import QMessageBox
 
 # lots of pieces between the label updates within the current and five day forecast functions are repeated,
 # I don't know if any of this can be compressed and encapsulated with further small functions
@@ -381,8 +381,8 @@ class Ui_weatherAPP(object):
         self.fiveDayLabel.setText(QCoreApplication.translate("weatherAPP", u"5 Day Forecast", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
-        location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
-        self.getWeather(location_string)
+        #location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
+        self.getWeather(f"{self.getLocation()['city']}, {self.getLocation()['region']}")
     # retranslateUi
 
     def getLocation(self):
@@ -541,7 +541,7 @@ class Ui_weatherAPP(object):
         self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
 
     def getWeather(self, user_location):
-        # API key, need to remove or something? idk
+        # API key
         api_key = 'b6139f6046526366147abd5e0a2919ed'
 
         # test variable for bypassing user input
@@ -554,8 +554,16 @@ class Ui_weatherAPP(object):
 
         if weather_data.json()['cod'] == '404':
             # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
-            self.cityLabel.setText(f"No city found")
-            print("No City Found")
+
+            msg = QMessageBox()
+            msg.setStyleSheet("QLabel{min-width: 300px;}")
+            msg.setText("No City Found")
+            msg.setInformativeText('Please Enter a Valid Location')
+            msg.setWindowTitle("Error")
+            x = msg.exec_()
+
+            #self.cityLabel.setText(f"No city found")
+            #print("No City Found")
         else:
             # get lat and lon coordinates for five day forecast query
             lat = weather_data.json()['coord']['lat']
