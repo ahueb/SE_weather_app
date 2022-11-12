@@ -382,8 +382,7 @@ class Ui_weatherAPP(object):
         self.fiveDayLabel.setText(QCoreApplication.translate("weatherAPP", u"5 Day Forecast", None))
         self.enterCityLabel.setText(QCoreApplication.translate("weatherAPP", u"Search City or Zip Code:", None))
         self.submitBtn.setText(QCoreApplication.translate("weatherAPP", u"Get Forecast", None))
-        #location_string = f"{self.getLocation()['city']}, {self.getLocation()['region']}"
-        self.getWeather(f"{self.getLocation()['city']}, {self.getLocation()['region']}")
+        self.locationCheck(f"{self.getLocation()['city']}, {self.getLocation()['region']}")
     # retranslateUi
 
     def getLocation(self):
@@ -429,8 +428,6 @@ class Ui_weatherAPP(object):
 
     def updateFiveDayWeather(self, five_day_weather_data):
         # 5 day forecast
-
-        #Will need to take the timeData and convert it to something readable
 
         format = "%Y-%m-%d %H:%M:%S"
 
@@ -565,33 +562,9 @@ class Ui_weatherAPP(object):
             msg.setWindowTitle("Error")
             x = msg.exec_()
         else:
-            self.getWeather(user_location)
+            self.getWeather(weather_data)
 
-    def getWeather(self, user_location):
-        # API key
-        # api_key = 'b6139f6046526366147abd5e0a2919ed'
-
-        # test variable for bypassing user input
-        # user_location = "62703"
-
-        # grab weather data JSON and store in variable
-        weather_data = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={self.api_key}")
-
-
-        # if weather_data.json()['cod'] == '404':
-        #     # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
-
-        #     msg = QMessageBox()
-        #     msg.setStyleSheet("QLabel{min-width: 300px;}")
-        #     msg.setText("No City Found")
-        #     msg.setInformativeText('Please Enter a Valid Location')
-        #     msg.setWindowTitle("Error")
-        #     x = msg.exec_()
-
-        #     #self.cityLabel.setText(f"No city found")
-        #     #print("No City Found")
-        # else:
+    def getWeather(self, weather_data):
         # get lat and lon coordinates for five day forecast query
         lat = weather_data.json()['coord']['lat']
         lon = weather_data.json()['coord']['lon']
@@ -605,14 +578,6 @@ class Ui_weatherAPP(object):
 
         # call function used to update UI with five day weather forecast
         self.updateFiveDayWeather(five_day_weather_data)
-
-        # print(five_day_weather_data.json()['list'][0]['dt_txt'])
-        # print(five_day_weather_data.json()['list'])
-        # for item in five_day_weather_data.json()['list']:
-        #     print(item)
-            # for other_item in five_day_weather_data['list']:
-            #     print(other_item)
-            # break
             
 
 if __name__ == "__main__":
