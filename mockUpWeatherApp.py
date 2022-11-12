@@ -14,6 +14,7 @@ from PyQt5.QtWidgets import QMessageBox
 # I don't know if any of this can be compressed and encapsulated with further small functions
 
 class Ui_weatherAPP(object):
+    api_key = 'b6139f6046526366147abd5e0a2919ed'
     def setupUi(self, weatherAPP):
         if not weatherAPP.objectName():
             weatherAPP.setObjectName(u"weatherAPP")
@@ -67,7 +68,7 @@ class Ui_weatherAPP(object):
         self.iconLabel.setObjectName("iconLabel")
 
         # "Get Weather" button UI object placement
-        self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.getWeather(self.enterCityLineEdit.text()))
+        self.submitBtn = QPushButton(weatherAPP, clicked = lambda : self.locationCheck(self.enterCityLineEdit.text()))
         self.submitBtn.setObjectName(u"submitBtn")
         self.submitBtn.setGeometry(QRect(460, 620, 141, 51))
 
@@ -540,17 +541,19 @@ class Ui_weatherAPP(object):
         self.tempDayFive.setText(f"{temp}ºF")
         self.iconDayFive.setPixmap(QPixmap.fromImage(qIm))
 
-    def getWeather(self, user_location):
-        # API key
-        api_key = 'b6139f6046526366147abd5e0a2919ed'
-
-        # test variable for bypassing user input
-        # user_location = "62703"
-
-        # grab weather data JSON and store in variable
-        weather_data = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
-
+    def locationCheck(self, user_location):
+        weather_data = {}
+        if user_location != "":
+            weather_data = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={self.api_key}")
+        else:
+            msg = QMessageBox()
+            msg.setStyleSheet("QLabel{min-width: 300px;}")
+            msg.setText("No City Found")
+            msg.setInformativeText('Please Enter a Valid Location')
+            msg.setWindowTitle("Error")
+            x = msg.exec_()
+            return
 
         if weather_data.json()['cod'] == '404':
             # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
@@ -561,71 +564,49 @@ class Ui_weatherAPP(object):
             msg.setInformativeText('Please Enter a Valid Location')
             msg.setWindowTitle("Error")
             x = msg.exec_()
-
-            #self.cityLabel.setText(f"No city found")
-            #print("No City Found")
         else:
-            # get lat and lon coordinates for five day forecast query
-            lat = weather_data.json()['coord']['lat']
-            lon = weather_data.json()['coord']['lon']
+            self.getWeather(user_location)
 
-            # get five day forecast JSON and store in variable
-            five_day_weather_data = requests.get(
-                f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&cnt=50&appid={api_key}")
+    def getWeather(self, user_location):
+        # API key
+        # api_key = 'b6139f6046526366147abd5e0a2919ed'
 
-            # call function used to update UI with current weather data
-            self.updateCurrentWeather(weather_data)
+        # test variable for bypassing user input
+        # user_location = "62703"
 
-            # call function used to update UI with five day weather forecast
-            self.updateFiveDayWeather(five_day_weather_data)
-
-            # print(five_day_weather_data.json()['list'][0]['dt_txt'])
-            # print(five_day_weather_data.json()['list'])
-            # for item in five_day_weather_data.json()['list']:
-            #     print(item)
-                # for other_item in five_day_weather_data['list']:
-                #     print(other_item)
-                # break
-            
-def getWeather(self, user_location):
-    # API key, need to remove or something? idk
-    api_key = 'b6139f6046526366147abd5e0a2919ed'
-
-    # test variable for bypassing user input
-    # user_location = "62703"
-
-    # grab weather data JSON and store in variable
-    weather_data = requests.get(
-        f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={api_key}")
+        # grab weather data JSON and store in variable
+        weather_data = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={user_location}&units=imperial&APPID={self.api_key}")
 
 
-    if weather_data.json()['cod'] == '404':
-        # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
-        self.cityLabel.setText(f"No city found")
-        print("No City Found")
-    else:
+        # if weather_data.json()['cod'] == '404':
+        #     # set current city label to "No city found" if input is not understood/not real city/404 for some other reason?
+
+        #     msg = QMessageBox()
+        #     msg.setStyleSheet("QLabel{min-width: 300px;}")
+        #     msg.setText("No City Found")
+        #     msg.setInformativeText('Please Enter a Valid Location')
+        #     msg.setWindowTitle("Error")
+        #     x = msg.exec_()
+
+        #     #self.cityLabel.setText(f"No city found")
+        #     #print("No City Found")
+        # else:
         # get lat and lon coordinates for five day forecast query
         lat = weather_data.json()['coord']['lat']
         lon = weather_data.json()['coord']['lon']
 
         # get five day forecast JSON and store in variable
         five_day_weather_data = requests.get(
-            f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&cnt=40&appid={api_key}")
+            f"https://api.openweathermap.org/data/2.5/forecast?&lat={lat}&lon={lon}&units=imperial&cnt=50&appid={self.api_key}")
 
         # call function used to update UI with current weather data
-        # self.updateCurrentWeather(weather_data)
+        self.updateCurrentWeather(weather_data)
 
         # call function used to update UI with five day weather forecast
-        # self.updateFiveDayWeather(five_day_weather_data)
+        self.updateFiveDayWeather(five_day_weather_data)
 
-        for index, blah in enumerate(five_day_weather_data.json()['list']):
-            format = "%Y-%m-%d %H:%M:%S"
-            dt_object = datetime.datetime.strptime(blah['dt_txt'], format)
-            if dt_object.hour == 12:
-                print(dt_object)
-                print(index)
-                print(dt_object.hour)
-            # print(blah['dt_txt'])
+        # print(five_day_weather_data.json()['list'][0]['dt_txt'])
         # print(five_day_weather_data.json()['list'])
         # for item in five_day_weather_data.json()['list']:
         #     print(item)
